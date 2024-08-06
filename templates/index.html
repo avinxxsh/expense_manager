@@ -26,7 +26,12 @@
             <h2>Expenses</h2>
             <ul>
                 {% for expense in expenses %}
-                    <li>{{ expense.date }}: {{ expense.description }} - ${{ expense.amount }}{% if expense.recurring %} (Recurring){% endif %}</li>
+                    <li>
+                        {{ expense.date }}: {{ expense.description }} - ${{ expense.amount }}{% if expense.recurring %} (Recurring){% endif %}
+                        <form action="{{ url_for('delete_expense', expense_id=expense.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </li>
                 {% endfor %}
             </ul>
             <a href="{{ url_for('recurring_summary') }}">View Recurring Charges Summary</a>
