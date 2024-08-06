@@ -12,14 +12,17 @@
         <input type="text" name="description" placeholder="Description" required>
         <input type="number" name="amount" placeholder="Amount" step="0.01" required>
         <input type="date" name="date" required>
+        <label for="recurring">Recurring</label>
+        <input type="checkbox" name="recurring" id="recurring">
         <button type="submit">Add Expense</button>
     </form>
     <h2>Total Expenses: ${{ total }}</h2>
     <h2>Expenses</h2>
     <ul>
         {% for expense in expenses %}
-            <li>{{ expense.date }}: {{ expense.description }} - ${{ expense.amount }}</li>
+            <li>{{ expense.date }}: {{ expense.description }} - ${{ expense.amount }}{% if expense.recurring %} (Recurring){% endif %}</li>
         {% endfor %}
     </ul>
+    <a href="{{ url_for('recurring_summary') }}">View Recurring Charges Summary</a>
 </body>
 </html>

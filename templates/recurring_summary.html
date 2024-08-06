@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Recurring Charges Summary</title>
+</head>
+<body>
+    <h1>Recurring Charges Summary</h1>
+    <h2>Total Recurring Charges: ${{ total_recurring }}</h2>
+    <h2>Recurring Expenses</h2>
+    <ul>
+        {% for expense in recurring_expenses %}
+            <li>{{ expense.date }}: {{ expense.description }} - ${{ expense.amount }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
